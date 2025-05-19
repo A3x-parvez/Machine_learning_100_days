@@ -28,6 +28,7 @@ Threshold: `|z| > 3` → outlier
 IQR = Q3 - Q1
 Lower Bound = Q1 - 1.5*IQR
 Upper Bound = Q3 + 1.5*IQR
+```
 # Values outside bounds are outliers
 
 ## 2. Visualization Techniques
@@ -53,7 +54,7 @@ When they are errors or irrelevant to analysis:
 
 ```python
 df = df[(df['col'] >= lower_bound) & (df['col'] <= upper_bound)]
-
+```
 ### 2. Cap/Floor Outliers (Winsorization)
 
 Replace extreme values with upper/lower percentiles:
@@ -61,14 +62,14 @@ Replace extreme values with upper/lower percentiles:
 ```python
 import scipy.stats as stats
 df['col'] = stats.mstats.winsorize(df['col'], limits=[0.05, 0.05])
-
+```
 ### 3. Transform Data
 
 Use log, square root, or Box-Cox to reduce impact:
 
 ```python
 df['col'] = np.log1p(df['col'])
-
+```
 ### 4. Impute with Mean/Median
 Replace outliers with the column's median or mean.
 
